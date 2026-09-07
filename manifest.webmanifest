@@ -1,0 +1,10 @@
+{
+  "name": "Budapeszt, na dwoje",
+  "short_name": "Budapeszt",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#132238",
+  "theme_color": "#132238",
+  "lang": "pl",
+  "description": "Prywatna gra miejska i przewodnik po Budapeszcie, 11–14 września 2026."
+}

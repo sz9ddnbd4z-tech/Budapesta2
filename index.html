@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#132238">
+<title>Budapeszt, na dwoje</title>
+<style>
+:root{--night:#132238;--night2:#1c3350;--gold:#c99a44;--gold2:#e4c483;--paper:#f6efe1;--paper2:#ede2cc;--wine:#8a3b4c;--teal:#2f5d57;--muted:#9ba4b2;--ink:#26201b}
+*{box-sizing:border-box}html,body{margin:0;background:var(--night);color:var(--paper);font-family:Georgia,serif}body{-webkit-font-smoothing:antialiased}.wrap{max-width:680px;margin:auto;padding:env(safe-area-inset-top) 0 calc(90px + env(safe-area-inset-bottom))}
+header{text-align:center;padding:28px 20px 18px;border-bottom:1px solid #c99a4450}.k{font:700 11px system-ui;letter-spacing:.14em;color:var(--gold2)}h1{font-size:35px;font-weight:400;margin:8px 0}h1 em{color:var(--gold2)}.sub{font:14px/1.55 system-ui;color:#c9c0b1}
+.rail{display:flex;gap:7px;padding:15px 18px;overflow:auto}.rail button{flex:1;min-width:112px;min-height:46px;border:1px solid #c99a4450;background:#ffffff08;color:#aeb5c0;border-radius:5px;font:700 11px system-ui}.rail button.active{background:var(--gold);color:#241a08}
+.chapter{display:none;padding:0 18px}.chapter.active{display:block}.head{display:flex;align-items:baseline;gap:9px;margin:12px 2px}.num{font:italic 28px Georgia;color:var(--gold)}.head h2{font-size:20px;font-weight:400;margin:0}.date{margin-left:auto;color:#87909e;font:11px system-ui}.bar{height:5px;background:#ffffff12;border-radius:8px;margin:0 2px 14px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold)}
+.stop{background:var(--paper);color:var(--ink);margin:12px 0;border-radius:4px;overflow:hidden;box-shadow:0 8px 25px #0005}.locked{background:#ffffff08;color:#7f8998;border:1px dashed #ffffff20;box-shadow:none}.lock{padding:16px;display:flex;gap:11px;align-items:center;font:13px/1.4 system-ui}.ln{width:28px;height:28px;border:1px solid #ffffff25;border-radius:50%;display:grid;place-items:center;flex:none}.top{display:flex;justify-content:space-between;padding:17px 18px 2px}.icon{font-size:26px}.badge{font:700 10px system-ui;letter-spacing:.08em;color:var(--wine);border:1px solid var(--wine);padding:4px 9px;border-radius:20px}.stop h3{font-size:21px;font-weight:400;margin:7px 18px 3px}.when{font:700 12px system-ui;color:var(--teal);margin:0 18px 13px}.riddle{margin:0 18px 16px;padding:13px 14px;background:var(--paper2);border-left:3px solid var(--wine);font:italic 15px/1.55 Georgia}.reveal{border-top:1px dashed #0002;margin:0 18px;padding:14px 0}.label{font:700 10px system-ui;letter-spacing:.1em;color:var(--wine)}.fact{font:14px/1.6 Georgia;margin:4px 0 13px}.tip{font:13px/1.55 system-ui;background:#8a3b4c10;padding:10px 11px;border-radius:3px;margin:4px 0}.actions{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 18px}.btn{min-height:46px;border:0;border-radius:4px;background:var(--gold);color:#241a08;padding:11px 16px;font:700 13px system-ui}.btn.alt{background:transparent;border:1px solid var(--wine);color:var(--wine)}.done{padding:0 18px 16px;color:var(--teal);font:700 12px system-ui}
+.mapbox{margin:24px 18px}.mapbox h2{font-size:19px;font-weight:400;margin:0}.mapbox p{font:12px system-ui;color:var(--muted)}.map{height:360px;border-radius:5px;overflow:hidden;border:1px solid #c99a4450;background:#e9dfcd;position:relative}.map iframe{width:100%;height:100%;border:0}.leaflet-container{height:100%;width:100%;font-family:system-ui,sans-serif}.mapfallback{padding:20px;color:#433;font:14px/1.5 system-ui}.mapfallback a{color:#8a3b4c;font-weight:700}
+.bottom{position:fixed;left:0;right:0;bottom:0;padding:10px max(14px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));background:#132238ee;backdrop-filter:blur(12px);z-index:10;border-top:1px solid #ffffff14}.surprise{display:block;width:min(680px,100%);margin:auto;min-height:50px;border:0;border-radius:28px;background:var(--wine);color:var(--paper);font:700 14px system-ui}.count{background:var(--gold);color:#241a08;border-radius:50%;padding:3px 7px;margin-left:5px}
+.modal{display:none;position:fixed;inset:0;background:#090f19d0;z-index:30;align-items:center;justify-content:center;padding:22px}.modal.open{display:flex}.card{width:min(390px,100%);background:var(--paper);color:var(--ink);border:1px solid var(--gold);border-radius:6px;padding:28px 22px;text-align:center}.big{font-size:46px}.tag{font:700 10px system-ui;letter-spacing:.14em;color:var(--wine)}.card p{font:18px/1.5 Georgia}
+.notice{margin:12px 0;padding:12px;border:1px solid #c99a4440;border-radius:4px;background:#ffffff06;font:12px/1.5 system-ui;color:#c9c0b1}
+.installhint{margin-top:12px;font:700 11px system-ui;color:#8e99a9}\n</style>
+
+<style>
+/* iPhone / Safari visibility & touch fixes */
+button, .btn, a.map-link {
+  -webkit-appearance:none !important; appearance:none !important;
+  opacity:1 !important; visibility:visible !important;
+  -webkit-tap-highlight-color:rgba(231,184,92,.35);
+}
+.rail button{background:#263b57 !important;color:#f6efe1 !important;border:1px solid #e4c483 !important;border-radius:10px !important;min-height:48px !important;font:700 11px system-ui !important}
+.rail button.active{background:#e7b85c !important;color:#241a08 !important}
+.btn{min-height:50px !important;border-radius:10px !important;background:#e7b85c !important;color:#241a08 !important;border:2px solid #f3cf7a !important;font:800 13px system-ui !important;box-shadow:0 3px 0 rgba(0,0,0,.25) !important}
+.btn.alt{background:transparent !important;color:#8a3b4c !important;border:2px solid #8a3b4c !important;box-shadow:none !important}
+.card .btn{width:100% !important}
+@supports (-webkit-touch-callout:none){body{-webkit-text-size-adjust:100%}}
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-title" content="Budapeszt">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://tile.openstreetmap.org">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+
+<style>
+/* V2 — hosted iPhone layout */
+.map{height:250px!important;border-radius:14px!important;overflow:hidden!important;position:relative!important;background:#e9dfcc!important}
+.leaflet-container{height:100%;width:100%;font-family:system-ui,-apple-system,sans-serif}
+.leaflet-control-attribution{font-size:8px!important}
+.popup-link{display:inline-block;margin-top:8px;font:700 13px system-ui;color:#8a3b4c}
+.rail{position:sticky;top:0;z-index:20;background:rgba(19,34,56,.96);padding:10px 18px!important;border-bottom:1px solid #c99a4430;backdrop-filter:blur(10px)}
+.rail button{min-height:44px!important;flex:0 0 auto!important;padding:10px 14px!important;border:1px solid #e4c483!important}
+.section-title{padding:12px 18px 2px;font:800 10px system-ui;letter-spacing:.14em;color:#e4c483}
+.actions{padding:0 18px 18px!important}
+.actions .btn{flex:1 1 100%!important;min-height:50px!important}
+.btn{min-height:50px!important;touch-action:manipulation!important}
+#surprise{position:fixed!important;left:16px!important;right:16px!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;z-index:1000!important;min-height:56px!important;border-radius:28px!important;box-shadow:0 10px 35px #0008!important}
+.wrap{padding-bottom:calc(100px + env(safe-area-inset-bottom))!important}
+.mapfallback{height:100%;display:grid;place-content:center;text-align:center;padding:20px;color:#55483d;font:15px/1.5 system-ui}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="k">GRA MIEJSKA · 11–14 WRZEŚNIA 2026</div><h1>Budapeszt, <em>na dwoje</em></h1><div class="sub">Wasz prywatny przewodnik. Punkty odsłaniają się po kolei, ale między nimi możecie losować małe zadania.</div><div class="installhint">📱 Najlepiej otworzyć w Safari i dodać „Do ekranu głównego”.</div></header>
+<nav class="rail" id="rail"></nav>
+<main id="chapters"></main>
+<section class="mapbox"><h2>Wasza mapa</h2><p>Odkryte punkty są zaznaczone na mapie. Kliknięcie punktu otwiera trasę w Apple Maps.</p><div class="map" id="map"><div class="mapfallback">Ładowanie mapy…</div></div></section>
+<div class="notice">💾 Postęp zapisuje się na tym urządzeniu. Jeśli dodacie tę stronę do ekranu głównego i korzystacie z niej na iPhone'ach, gra zachowuje stan osobno na każdym telefonie.</div>
+</div>
+<div class="bottom"><button class="surprise" id="surprise">🎲 Losuj niespodziankę <span class="count" id="count">12</span></button></div>
+<div class="modal" id="modal"><div class="card" id="card"></div></div>
+<script>
+const DATA=[
+{title:"Piątkowy wieczór",date:"11 IX · wieczorem",stops:[
+["🕯️","Powitanie","Bazylika św. Stefana","Po zameldowaniu · zmierzch","Najwyższy punkt Pesztu nie jest wieżowcem — znajdźcie plac, na którym kopuła zaczyna świecić, gdy gaśnie niebo.","Bazylika ma 96 m wysokości — tyle samo co Parlament.","Nie musicie dziś wchodzić. Zostawcie wnętrze na spokojniejszy dzień.",47.5008902,19.0539887],
+["🌉","Spacer","Most Łańcuchowy","Po kolacji · ok. 20:30","Dwa kamienne lwy pilnują mostu. Podobno rzeźbiarz zapomniał im języków. Sprawdźcie.","Most otwarto w 1849 r. i jako pierwszy na stałe połączył Budę z Pesztem.","Przejdźcie na drugą stronę i wróćcie.",47.4989928,19.0436994],
+["🏛️","Widok","Nabrzeże przy Parlamencie","Ok. 21:00","Podejdźcie możliwie blisko wody i spójrzcie na neogotyckiego giganta.","Parlament ma 691 pomieszczeń, a jego wysokość to 96 m.","Wnętrze zostawcie na niedzielę.",47.507121,19.045669]]},
+{title:"Sobota — Buda i klasyki",date:"12 IX · cały dzień",stops:[
+["🚟","Wjazd","Budavári Sikló","Rano · przed tłumami","Znajdźcie żółte wagoniki kolejki wspinającej się na wzgórze zamkowe.","Kolejka działa od 1870 r.; po wojnie została odbudowana i ponownie otwarta w 1986 r.","Jeśli kolejka jest długa, wejdźcie pieszo.",47.4977979,19.0392974],
+["👑","Klasyk","Zamek Królewski","Rano","Znajdźcie taras, z którego widać most, którym szliście wczoraj.","Kompleks jest w dużej mierze powojenną rekonstrukcją po oblężeniu Budapesztu w 1945 r.","Na zewnątrz wystarczy ok. 45 min.",47.4962048,19.0395666],
+["⛪","Klasyk","Kościół Macieja","Przed południem","Szukajcie dachu w kolorowe romby.","Charakterystyczne dachówki wiązane są z manufakturą Zsolnay w Pécs.","Jeśli tempo siada — plac i fasada też robią robotę.",47.5019537,19.0341617],
+["🏰","Widok · romantyczny","Baszta Rybacka","Przed południem","Siedem wieżyczek i widok na cały Peszt. Znajdźcie miejsce na murku i nic nie róbcie przez chwilę.","Baszta powstała dopiero na przełomie XIX i XX wieku jako dekoracyjny taras.","Zachód słońca zostawcie na Gellérta.",47.5021827,19.0347813],
+["🥟","Jedzenie","Hala Targowa","Obiad · do 13:00","Znajdźcie langosza i podzielcie się jednym na dwoje.","Nagycsarnok powstała w 1897 r. i jest największą krytą halą targową Budapesztu.","Jedzcie tu wcześnie. Po południu potrzebujecie bufora przed Operą.",47.4870848,19.058493],
+["🎭","Bilet kupiony ✓","Opera — Dancingly Yours","18:30 · bądźcie ok. 18:00","Wejdźcie po czerwonym dywanie do budynku, który miał konkurować przepychem z Wiedniem.","Oficjalny program: Dancingly Yours, 12 IX 2026, 18:30.","Adres: Andrássy út 22. Smart casual spokojnie wystarczy.",47.5001,19.0587],
+["🍸","Wieczór","Szimpla Kert","Po spektaklu · ok. 21:15","Za zwykłą bramą kamienicy znajdźcie podwórko-symbol ruin barów.","Szimpla powstała w 2002 r. jako tymczasowy projekt i została na stałe.","Po Operze około 15 min spacerem.",47.4969648,19.0633459]]},
+{title:"Niedziela — wnętrza i panorama",date:"13 IX · cały dzień",stops:[
+["✡️","Historia","Wielka Synagoga na Dohány","Rano · ok. 9:30","Dwie wieże w stylu mauretańskim. Za nimi ogród pamięci z Drzewem Życia.","Drzewo ma liście z nazwiskami ofiar Holokaustu.","Sprawdźcie godziny wejścia przed wyjściem.",47.4959071,19.0606139],
+["🏛️","TWARDY TERMIN · 12:45","Parlament — środek","Wejście 12:45 · bądźcie 12:15","Wracacie nad Dunaj, ale tym razem do środka — zobaczyć m.in. koronę św. Stefana.","To najbardziej rygorystyczny punkt gry: nie spóźnijcie się na kontrolę bezpieczeństwa.","Macie bilet. Nie dokładajcie niczego przed Parlamentem.",47.507121,19.045669],
+["🚣","Opcjonalnie","Łódki · Városliget","Po obiedzie","Bajkowy zamek, jeziorko i pół godziny bez chodzenia.","Vajdahunyad zbudowano w 1896 r. na wystawę milenijną.","Jeśli czas goni — POMIŃ.",47.5158,19.0803],
+["🌆","Widok · romantyczny","Wzgórze Gellérta","Zachód słońca","Ostatnie podejście. Odwróćcie się od pomnika i popatrzcie na całe miasto.","Pomnik Wolności powstał w 1947 r.","Nie potrzebujecie płatnej atrakcji. Liczy się panorama.",47.4865182,19.0496831],
+["🛥️","Wieczór","Nocny rejs po Dunaju","Po zmroku · ok. 20:00","Widzieliście miasto z ulicy i wzgórza. Teraz zobaczcie je z poziomu wody.","Wieczorny rejs pozwala zobaczyć podświetlone nabrzeże i mosty.","Zarezerwujcie wcześniej, jeśli zależy Wam na dobrym miejscu.",47.4941761,19.0489099],
+["🍰","Pożegnanie dnia","New York Café","Po rejsie","Kawiarnia tak przesadzona, że aż piękna. Jedno ciasto i kawa na dwoje.","Kawiarnia działa od 1894 r. i była ważnym miejscem dla budapeszteńskich pisarzy.","Nie róbcie tu kolacji. To punkt na klimat i deser.",47.497877,19.070248]]},
+{title:"Poniedziałek — pożegnanie",date:"14 IX · do ok. 16:00",stops:[
+["🥐","Finał","Ostatni spacer nad Dunajem","Przed wyjazdem","Wróćcie jeszcze raz nad rzekę w świetle dnia. Rozpoznajcie miejsca, które odwiedziliście nocą.","Domykacie pętlę: Buda, Peszt, mosty, Parlament i wzgórza spięte jedną rzeką.","Nie dokładajcie już wielkich atrakcji. To ma być spokojne zakończenie.",47.4989928,19.0436994]]}];
+
+const SURPRISES=[["🥟","Znajdźcie langosza i podzielcie się jednym w miejscu z ładnym widokiem."],["🍺","W najbliższym lokalu zamówcie po węgierskim piwie i wznieście toast za wyjazd."],["🍬","Podzielcie się jednym kürtőskalácsem — wybierzcie smak losowo."],["📸","Poproście nieznajomego o wspólne zdjęcie."],["💌","Powiedz jej jedną rzecz, za którą jesteś jej wdzięczny w tej podróży."],["🤫","60 sekund ciszy nad Dunajem. Telefony do kieszeni."],["☕","Znajdźcie małą lokalną kawiarnię w promieniu 200 m."],["🍦","Każde wybiera smak lodów, którego normalnie by nie wybrało."],["🕺","20 sekund tańca do muzyki, którą akurat słyszycie."],["🎁","Kup jej drobiazg za maks. 3000 HUF."],["🥂","Spróbujcie po kieliszku pálinki."],["🗣️","Nauczcie się od miejscowego jednego węgierskiego słowa i użyjcie go."]];
+// iOS-safe storage: Safari can block localStorage for local file:// pages.
+const STORE={};
+function getStore(k,fallback){
+  try { const v=localStorage.getItem(k); return v===null?fallback:v; }
+  catch(e){ return STORE[k]??fallback; }
+}
+function setStore(k,v){
+  STORE[k]=String(v);
+  try { localStorage.setItem(k,String(v)); } catch(e){}
+}
+let unlocked=Number(getStore("bp_unlocked","0"))||0,day=0,remaining=JSON.parse(getStore("bp_surprises","null")||"null")||SURPRISES.map((_,i)=>i);
+const all=DATA.flatMap((d,di)=>d.stops.map(s=>({s,di})));
+function save(){setStore("bp_unlocked",unlocked);setStore("bp_surprises",JSON.stringify(remaining))}
+function render(){
+ const rail=document.getElementById("rail");
+ rail.innerHTML=DATA.map((d,i)=>`<button type="button" class="${i===day?"active":""}" data-day="${i}">ROZDZIAŁ ${i+1}</button>`).join("");
+ rail.querySelectorAll("[data-day]").forEach(b=>b.addEventListener("click",()=>{day=+b.dataset.day;render()}));
+ let off=DATA.slice(0,day).reduce((a,d)=>a+d.stops.length,0),d=DATA[day];
+ let html=`<section class="chapter active"><div class="head"><span class="num">${day+1}</span><h2>${d.title}</h2><span class="date">${d.date}</span></div><div class="bar"><i style="width:${Math.max(0,Math.min(100,(unlocked-off)/d.stops.length*100))}%"></i></div>`;
+ d.stops.forEach((s,i)=>{
+   let idx=off+i,state=idx<unlocked?"done":idx===unlocked?"current":"locked";
+   if(state==="locked"){
+     html+=`<div class="stop locked"><div class="lock"><span class="ln">${idx+1}</span><span>Odsłoni się po ukończeniu poprzedniego punktu.</span></div></div>`;
+   } else {
+     html+=`<article class="stop"><div class="top"><span class="icon">${s[0]}</span><span class="badge">${s[1]}</span></div><h3>${s[2]}</h3><p class="when">${s[3]}</p><p class="riddle">${s[4]}</p>`;
+     if(state==="current"){
+       html+=`<div class="actions"><button type="button" class="btn" data-unlock="${idx}">Jesteśmy na miejscu — odsłoń ✓</button>${s[1]==="Opcjonalnie"?`<button type="button" class="btn alt" data-unlock="${idx}">Pomijamy →</button>`:""}</div>`;
+     } else {
+       html+=`<div class="reveal"><div class="label">CIEKAWOSTKA</div><p class="fact">${s[5]}</p><div class="label">WSKAZÓWKA</div><p class="tip">${s[6]}</p><a class="btn map-link" target="_blank" rel="noopener" href="https://maps.apple.com/?ll=${s[7]},${s[8]}&q=${encodeURIComponent(s[2])}">🧭 Otwórz w Apple Maps</a></div><div class="done">✓ Odkryte</div>`;
+     }
+     html+=`</article>`;
+   }
+ });
+ html+="</section>";
+ document.getElementById("chapters").innerHTML=html;
+ document.querySelectorAll("[data-unlock]").forEach(b=>b.addEventListener("click",()=>{
+   if(Number(b.dataset.unlock)!==unlocked) return;
+   unlocked++;save();render();
+   setTimeout(()=>document.querySelector(".stop:not(.locked)")?.scrollIntoView({behavior:"smooth",block:"center"}),80);
+ }));
+ renderMap();
+}
+function renderMap(){
+  const m=document.getElementById("map");
+  const pts=all.slice(0,unlocked);
+  if(!pts.length){
+    m.innerHTML='<div class="mapfallback"><b>Mapa czeka na pierwszy odkryty punkt.</b><br><small>Odsłoń pierwszy punkt, a pinezka pojawi się tutaj.</small></div>';
+    return;
+  }
+  if(!window.L){
+    m.innerHTML='<div class="mapfallback"><b>Mapa chwilowo niedostępna.</b><br><small>Sprawdź internet i odśwież stronę.</small></div>';
+    return;
+  }
+  if(window._bpMap){try{window._bpMap.remove()}catch(e){}}
+  m.innerHTML="";
+  const map=L.map(m,{zoomControl:true,scrollWheelZoom:false,dragging:true,tap:true}).setView([47.4989,19.0470],13);
+  window._bpMap=map;
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19,
+    attribution:'© OpenStreetMap contributors'
+  }).addTo(map);
+  const bounds=[];
+  pts.forEach((x,i)=>{
+    const s=x.s, pos=[s[7],s[8]];
+    bounds.push(pos);
+    const marker=L.marker(pos).addTo(map);
+    marker.bindPopup(`<b>${i+1}. ${s[2]}</b><br><a class="popup-link" href="https://maps.apple.com/?ll=${s[7]},${s[8]}&q=${encodeURIComponent(s[2])}" target="_blank" rel="noopener">🧭 Otwórz Apple Maps</a>`);
+  });
+  if(bounds.length>1) map.fitBounds(bounds,{padding:[24,24],maxZoom:15});
+  else map.setView(bounds[0],15);
+  setTimeout(()=>map.invalidateSize(),150);
+}
+function surprise(){let modal=document.getElementById("modal"),card=document.getElementById("card");if(!remaining.length){card.innerHTML='<div class="tag">TALIA WYCZERPANA</div><div class="big">🎉</div><p>Wszystkie niespodzianki rozegrane.</p><button class="btn" id="reshuffle">Przetasuj talię</button>';modal.classList.add("open");document.getElementById("reshuffle").onclick=()=>{remaining=SURPRISES.map((_,i)=>i);save();modal.classList.remove("open");updateCount()};return}let n=Math.floor(Math.random()*remaining.length),i=remaining.splice(n,1)[0];save();updateCount();card.innerHTML=`<div class="tag">NIESPODZIANKA</div><div class="big">${SURPRISES[i][0]}</div><p>${SURPRISES[i][1]}</p><button class="btn" id="close">Zrobione ✓</button>`;modal.classList.add("open");document.getElementById("close").onclick=()=>modal.classList.remove("open")}
+function updateCount(){document.getElementById("count").textContent=remaining.length}
+document.getElementById("surprise").onclick=surprise;document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("open")};render();updateCount();
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js").catch(()=>{});}</script>
+</body></html>
